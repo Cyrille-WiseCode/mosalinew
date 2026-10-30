@@ -1,0 +1,206 @@
+@import "tailwindcss";
+
+/* =============================================================================
+   MOSALI — Design system (référence : docs/design-system.md)
+   Tokens HSL (triplets "H S% L%") -> mappés dans @theme (Tailwind v4 : pas de
+   tailwind.config). Monochrome froid + UN accent (indigo ardoise).
+   ============================================================================= */
+:root {
+  --background: 214 30% 97%;
+  --foreground: 218 28% 13%;
+  --card: 0 0% 100%;
+  --card-foreground: 218 28% 13%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 218 28% 13%;
+  --muted: 214 22% 94%;
+  --muted-foreground: 219 12% 40%;
+  --border: 214 20% 88%;
+  --input: 214 18% 82%;
+  --ring: 238 24% 55%;
+  --sidebar: 214 28% 95%;
+  --night: 228 26% 10%;
+
+  /* Accent unique — échelle indigo ardoise (option A retenue) */
+  --primary: 238 21% 43%;
+  --primary-hover: 238 21% 38%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 238 30% 95%;
+  --accent-foreground: 238 25% 32%;
+  --secondary: 214 22% 94%;
+  --secondary-foreground: 218 28% 18%;
+
+  /* Sémantiques désaturées, intégrées au monochrome */
+  --success: 152 28% 30%;     --success-soft: 150 25% 93%;
+  --warning: 36 55% 30%;      --warning-soft: 40 55% 91%;
+  --destructive: 4 42% 42%;   --destructive-soft: 4 50% 95%;
+  --info: 205 38% 32%;        --info-soft: 205 40% 93%;
+
+  --shadow: 220 30% 12%;
+  --grain-opacity: 0.05;
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --duration-fast: 160ms;
+  color-scheme: light;
+}
+
+.dark {
+  --background: 216 28% 7%;
+  --foreground: 214 20% 92%;
+  --card: 216 24% 10%;
+  --card-foreground: 214 20% 92%;
+  --popover: 216 24% 11%;
+  --popover-foreground: 214 20% 92%;
+  --muted: 215 20% 14%;
+  --muted-foreground: 215 14% 66%;
+  --border: 215 18% 19%;
+  --input: 215 16% 24%;
+  --ring: 238 40% 72%;
+  --sidebar: 216 26% 9%;
+  --night: 228 26% 8%;
+
+  --primary: 238 42% 74%;
+  --primary-hover: 238 42% 80%;
+  --primary-foreground: 232 30% 10%;
+  --accent: 238 22% 18%;
+  --accent-foreground: 238 50% 86%;
+  --secondary: 215 20% 15%;
+  --secondary-foreground: 214 20% 90%;
+
+  --success: 150 32% 66%;     --success-soft: 150 22% 14%;
+  --warning: 40 55% 68%;      --warning-soft: 38 30% 14%;
+  --destructive: 4 55% 72%;   --destructive-soft: 4 28% 15%;
+  --info: 205 50% 72%;        --info-soft: 205 28% 14%;
+
+  --shadow: 0 0% 0%;
+  --grain-opacity: 0.07;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-sidebar: hsl(var(--sidebar));
+  --color-night: hsl(var(--night));
+  --color-primary: hsl(var(--primary));
+  --color-primary-hover: hsl(var(--primary-hover));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-success: hsl(var(--success));
+  --color-success-soft: hsl(var(--success-soft));
+  --color-warning: hsl(var(--warning));
+  --color-warning-soft: hsl(var(--warning-soft));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-soft: hsl(var(--destructive-soft));
+  --color-info: hsl(var(--info));
+  --color-info-soft: hsl(var(--info-soft));
+
+  --font-sans: var(--font-sans-family), ui-sans-serif, system-ui, sans-serif;
+
+  /* Échelle typographique compacte (proportions Linear). Aucun grand titre. */
+  --text-2xs: 0.6875rem;  --text-2xs--line-height: 1rem;       /* 11 : méta, captions */
+  --text-xs: 0.75rem;     --text-xs--line-height: 1.125rem;    /* 12 : labels, badges */
+  --text-sm: 0.8125rem;   --text-sm--line-height: 1.25rem;     /* 13 : texte d'interface */
+  --text-base: 0.875rem;  --text-base--line-height: 1.5rem;    /* 14 : lecture (descriptions) */
+  --text-lg: 1rem;        --text-lg--line-height: 1.5rem;      /* 16 : titre de carte / section */
+  --text-xl: 1.25rem;     --text-xl--line-height: 1.75rem;     /* 20 : titre de page */
+  --text-2xl: 1.5rem;     --text-2xl--line-height: 2rem;       /* 24 : plafond (appli) */
+  --text-display: clamp(1.625rem, 3.4vw, 2.125rem);            /* 26–34 : hero public uniquement */
+  --text-display--line-height: 1.15;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+
+  /* Profondeur Z légère */
+  --shadow-z1: 0 1px 2px hsl(var(--shadow) / 0.06);
+  --shadow-z2: 0 2px 8px hsl(var(--shadow) / 0.08), 0 1px 2px hsl(var(--shadow) / 0.05);
+  --shadow-z3: 0 12px 32px hsl(var(--shadow) / 0.14), 0 2px 6px hsl(var(--shadow) / 0.06);
+
+  --animate-pop-in: pop-in var(--duration-fast) var(--ease-spring);
+  --animate-pop-out: pop-out 120ms ease-in forwards;
+  --animate-fade-in: fade-in var(--duration-fast) ease-out;
+  --animate-fade-out: fade-out 120ms ease-in forwards;
+  --animate-slide-in-left: slide-in-left 200ms var(--ease-spring);
+  --animate-slide-out-left: slide-out-left 150ms ease-in forwards;
+  --animate-shimmer: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes pop-in { from { opacity: 0; transform: translate(-50%, -48%) scale(0.97); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+@keyframes pop-out { to { opacity: 0; transform: translate(-50%, -49%) scale(0.98); } }
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes fade-out { to { opacity: 0; } }
+@keyframes slide-in-left { from { transform: translateX(-12px); opacity: 0; } }
+@keyframes slide-out-left { to { transform: translateX(-12px); opacity: 0; } }
+@keyframes shimmer { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+
+/* ---- Grain : UNE texture, réutilisée par utilities (jamais par composant) ---- */
+:root {
+  --grain-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.4 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@utility grain {
+  isolation: isolate;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: inherit;
+    opacity: var(--grain-opacity);
+    background-image: var(--grain-image);
+    background-size: 180px 180px;
+  }
+}
+/* Intensités graduées selon l'importance du composant */
+@utility grain-soft   { --grain-opacity: 0.035; }
+@utility grain-medium { --grain-opacity: 0.07; }
+@utility grain-strong { --grain-opacity: 0.16; }
+@utility grain-print  { --grain-opacity: 0.32; }   /* boutons : effet sérigraphie */
+
+/* Verre poli : sidebar, cartes, toasts UNIQUEMENT */
+@utility glass {
+  background-color: hsl(var(--card) / 0.78);
+  backdrop-filter: blur(14px) saturate(1.15);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  border: 1px solid hsl(var(--border) / 0.9);
+}
+
+@layer base {
+  * { border-color: hsl(var(--border)); }
+  :where(.grain) { position: relative; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; min-width: 320px; min-height: 100vh;
+    background: hsl(var(--background)); color: hsl(var(--foreground));
+    font-family: var(--font-sans);
+    font-size: var(--text-sm); line-height: var(--text-sm--line-height);
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+  /* Brouillard atmosphérique global (très léger) */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    opacity: calc(var(--grain-opacity) * 0.5);
+    background-image: var(--grain-image); background-size: 180px 180px;
+  }
+  body > * { position: relative; z-index: 1; }
+  button, [role="button"], select { cursor: pointer; }
+  :focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+  ::selection { background: hsl(var(--primary) / 0.25); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
